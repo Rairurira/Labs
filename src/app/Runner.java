@@ -8,7 +8,7 @@ public class Runner {
 		
 	        TransactionDAO trDao= new TransactionDAO();
 	        	    
-	        trDao.createTransaction(2, "11-DEC-16", 248683369, 789361362, 19);
+	        trDao.createTransaction(3, "11-DEC-16", 248683369, 789361362, 50);
 
 	    }
 
