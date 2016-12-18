@@ -2,13 +2,13 @@ package app;
 
 public class CreditCardBO {
 	private int credit_card_ID;
-    private int account_ID;
+    private String account_ID;
     private int cash_amount;
     
     public int getCredit_Card_ID() {
         return credit_card_ID;
     }
-    public int getAccountID() {
+    public String getAccountID() {
         return account_ID;
     }
     public int getCash_Amount() {
@@ -19,7 +19,7 @@ public class CreditCardBO {
         credit_card_ID = ccID;
     }
     
-    public void setAccountID(int accID) {
+    public void setAccountID(String accID) {
         account_ID = accID;
     }
     

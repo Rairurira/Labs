@@ -1,25 +1,23 @@
 package app;
 
 public class AccountBO {
-	private int accountID;
+	private String accountID;
     private String firstName;
     private String lastName;
     private String country;
 
-    public int getAccountID() {
+    public String getAccountID() {
         return accountID;
     }
     public String getFirstName() {
         return firstName;
     }
-    public String getLastName() {
-        return lastName;
-    }
+    public String getLastName() { return lastName; }
     public String getCountry() {
         return country;
     }
 
-    public void setAccountID(int accID) {
+    public void setAccountID(String accID) {
         accountID = accID;
     }
     public void setFirstName(String fName) {

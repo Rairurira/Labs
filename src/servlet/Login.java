@@ -1,18 +1,44 @@
 package servlet;
 
+import app.AccountBO;
+import dao.AccountDAO;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class Login extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter writer = response.getWriter();
-		writer.println("<h1>Hello, World!</h1>");
+	AccountDAO accDAO = new AccountDAO();
 
+	protected void doPost (HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		req.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
+
+
+        String fName = req.getParameter("firstName");
+		String lName = req.getParameter("lastName");
+
+   		AccountBO accBO = accDAO.getAccountbyName(fName, lName);
+
+		if (accBO != null) {
+
+		 session.setAttribute("fName", req.getParameter("firstName"));
+		 session.setAttribute("lName", req.getParameter("lastName"));
+
+		 req.getRequestDispatcher("account.jsp").forward(req, resp);
+     }
+     else  {
+            System.out.println("Username incorrect");
+            req.getRequestDispatcher("index.jsp").include(req, resp);
+		}
 	}
+
 }

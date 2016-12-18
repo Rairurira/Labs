@@ -7,15 +7,15 @@ import java.sql.*;
 public class AccountDAO implements IAccountDAO {
 
 
-    public AccountBO createAccount(int accID, String fName, String lName, String c) {
+    public AccountBO createAccount(String accID, String fName, String lName, String c) {
         String sql = "Insert into Account values (?, ?, ?, ?)";
 
         Connection conn = ConnectManager.getInstance().getConnection();
         
-        ResultSet rs=null;
+        ResultSet rs = null;
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, accID);
+            ps.setString(1, accID);
             ps.setString(2, fName);
             ps.setString(3, lName);
             ps.setString(4, c);
@@ -41,7 +41,7 @@ public class AccountDAO implements IAccountDAO {
 
     }
 
-    public AccountBO getAccount(int accID) {
+    public AccountBO getAccount(String accID) {
         String sql = "select account_id,first_name,last_name,country from account where account_id=?";
 
         Connection conn = ConnectManager.getInstance().getConnection();
@@ -49,14 +49,14 @@ public class AccountDAO implements IAccountDAO {
         ResultSet rs=null;
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, accID);
+            ps.setString(1, accID);
 
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
                 AccountBO acc = new AccountBO();
-                acc.setAccountID(rs.getInt("account_id"));
+                acc.setAccountID(rs.getString("account_id"));
                 acc.setLastName(rs.getString("last_name"));
                 acc.setFirstName(rs.getString("first_name"));
                 acc.setCountry(rs.getString("country"));
@@ -78,7 +78,7 @@ public class AccountDAO implements IAccountDAO {
 
         Connection conn = ConnectManager.getInstance().getConnection();
 
-        ResultSet rs=null;
+        ResultSet rs = null;
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, fName);
@@ -118,7 +118,7 @@ public class AccountDAO implements IAccountDAO {
             ps.setString(1, accBO.getLastName());
             ps.setString(2, accBO.getFirstName());
             ps.setString(3, accBO.getCountry());
-            ps.setInt(4, accBO.getAccountID());
+            ps.setString(4, accBO.getAccountID());
 
             rs = ps.executeQuery();
 
@@ -137,17 +137,17 @@ public class AccountDAO implements IAccountDAO {
     }
 
 
-    public boolean deleteAccount(int accID) {
+    public boolean deleteAccount(String accID) {
         boolean success = false;
 
         String sql = "delete from account where account_id= ?";
 
         Connection conn = ConnectManager.getInstance().getConnection();
 
-        ResultSet rs=null;
+        ResultSet rs = null;
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, accID);
+            ps.setString(1, accID);
 
             rs = ps.executeQuery();
 

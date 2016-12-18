@@ -11,9 +11,9 @@
     <title>index</title>
   </head>
   <body>
-  <form action="" method="post">
-    <p>Last name <input type="text" name="username"></p>
-    <p>First name <input type="text" name="username"></p>
+  <form action = "/Login" method="post">
+        <p>First name <input type="text" name="firstName"></p>
+        <p>Last name <input type="text" name="lastName"></p>
     <input type="submit" value="Send" />
   </form>
   </body>
