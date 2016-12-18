@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import static java.io.FileDescriptor.out;
+
 
 public class Login extends HttpServlet {
 
@@ -36,8 +38,9 @@ public class Login extends HttpServlet {
 		 req.getRequestDispatcher("account.jsp").forward(req, resp);
      }
      else  {
-            System.out.println("Username incorrect");
-            req.getRequestDispatcher("index.jsp").include(req, resp);
+
+			req.getRequestDispatcher("index.jsp").forward(req, resp);
+
 		}
 	}
 

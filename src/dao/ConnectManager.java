@@ -24,6 +24,7 @@ public class ConnectManager {
     	Locale.setDefault(Locale.ENGLISH);
         if(conn==null){
             try {
+                Class.forName("oracle.jdbc.driver.OracleDriver");
             	String URL = "jdbc:oracle:thin:@//localhost:1521/XE";
                 String UserName = "BANK";
                 String Password = "systeM2016";
@@ -32,6 +33,8 @@ public class ConnectManager {
                 conn=null;
                 System.err.println (e);
 
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
 
